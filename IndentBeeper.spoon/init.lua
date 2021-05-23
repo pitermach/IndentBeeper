@@ -74,7 +74,11 @@ function checkIndent()
             currentIndent = getIndentLevel(getCurrentLine(element))
             
             if currentIndent ~= lastIndent then
-                sounds[currentIndent]:play()
+                if currentIndent<=32 then
+                    sounds[currentIndent]:play()
+                else --32 is the highest sound we have
+                    sounds[32]:play()
+                end --sound number check
                 
                 lastIndent = currentIndent
             end
