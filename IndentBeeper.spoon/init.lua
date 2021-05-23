@@ -53,15 +53,13 @@ function getIndentLevel(str)
         for i in str:gmatch("%s%s") do
             spaceIndent = spaceIndent + 1
         end
-        local tabIndent = 0
+        
         for i in str:gmatch("\t") do
-            tabIndent = tabIndent + 1
+            spaceIndent = spaceIndent + 1
         end
-        if spaceIndent > tabIndent then
-            return spaceIndent
-        else
-            return tabIndent
-        end
+        
+        return spaceIndent
+        
     end -- if the string is nil or not
 end -- function
 function checkIndent()
