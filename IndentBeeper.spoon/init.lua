@@ -1,16 +1,22 @@
-synth = hs.speech.new()
+local IndentBeeper={}
+IndentBeeper.name="Indent Beeper"
+IndentBeeper.version=1.0
+IndentBeeper.author="Pitermach, Talon"
+IndentBeeper.license="MIT"
 local ax = require("hs.axuielement")
 local inspect = hs.inspect
 local lastIndent = 0
 local lastLineNum = 0
 local sounds = {}
-
-function loadSounds()
+function IndentBeeper.init()
+    
+    
+    
     for i = 0, 32 do
-        sounds[i] = hs.sound.getByFile("indentSounds/" .. tostring(i) .. ".mp3")
+        sounds[i] = hs.sound.getByFile(hs.spoons.resourcePath("indentSounds/" .. tostring(i) .. ".mp3"))
     end
-    sounds[1]:play()
-end
+    
+end --init function
 
 function getCurrentLineNum(element)
     local role = element:attributeValue("AXRole")
@@ -79,6 +85,14 @@ function checkIndent()
     
 end -- check indent function
 
-loadSounds()
+
 checkTimer = hs.timer.doEvery(0.1, checkIndent)
-checkTimer:start()
+function IndentBeeper.start()
+    checkTimer:start()
+end --start function
+
+function IndentBeeper.stop()
+    checkTimer:stop()
+end --start function
+
+return IndentBeeper
