@@ -14,4 +14,10 @@ Save the file, return to the Hammerspoon menu extra but this time click the relo
 
 ## Todo
 
-While IndentBeeper already does what it's supposed to, there's a couple of things 
+While IndentBeeper already does what it's supposed to, there's a couple of things I'd like to do that were floated around by friends as suggestions:
+
+- [ ] Make number of spaces and tabs for the level of indent configurable. This is already kinda implemented in code.
+- [ ] Add an option to configure a folder where sounds are loaded from, to support theming.
+- [ ] Add an ability to make an include/exclude list of applications where the script should function
+
+If any of these features sounds like something you'd really want or if you have other cool ideas on how this could be expanded, pull requests and other feature suggestions are welcome!
