@@ -12,3 +12,6 @@ spoon.IndentBeeper:start()
 
 Save the file, return to the Hammerspoon menu extra but this time click the reload configuration option for your new changes to take effect. And this should be all there is to it!
 
+## Todo
+
+While IndentBeeper already does what it's supposed to, there's a couple of things 

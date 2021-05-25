@@ -3,6 +3,8 @@ IndentBeeper.name="Indent Beeper"
 IndentBeeper.version=1.0
 IndentBeeper.author="Pitermach, Talon"
 IndentBeeper.license="MIT"
+local spaces=2 --the number of spaces for 1 level of indent.
+local tabs=1 --same thing
 local ax = require("hs.axuielement")
 local inspect = hs.inspect
 local lastIndent = 0
@@ -50,15 +52,22 @@ function getIndentLevel(str)
     else
         
         local spaceIndent = 0
-        for i in str:gmatch("%s%s") do
-            spaceIndent = spaceIndent + 1
-        end
+        local tabIndent=0
+        spaceIndent=string.match(str, "(%s+)(%S*)")
+        if type(spaceIndent)=="string" then
+            spaceIndent=math.floor(spaceIndent:len()/spaces)
+        else
+            spaceIndent=0
+        end --if it's a string
         
-        for i in str:gmatch("\t") do
-            spaceIndent = spaceIndent + 1
-        end
+        tabIndent=string.match(str, "(\t+)(%S*)")
+        if type(tabIndent)=="string" then
+            tabIndent=math.floor(tabIndent:len()/tabs)
+        else
+            tabIndent=0
+        end --if it's a string
         
-        return spaceIndent
+        return spaceIndent+tabIndent
         
     end -- if the string is nil or not
 end -- function
