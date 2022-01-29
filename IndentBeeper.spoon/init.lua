@@ -35,7 +35,7 @@ function getCurrentLine(element)
     local role = element:attributeValue("AXRole")
     if role == "AXTextField" or role == "AXTextArea" then
         lineNum = getCurrentLineNum(element)
-        if element.AXRangeForLineWithParameter ~=nil then
+        if element.AXRangeForLineWithParameter ~=nil and lineNum~=nil then
             local lineRange = element:AXRangeForLineWithParameter(lineNum)
             local content = element:AXStringForRangeWithParameter(lineRange)
             return content or nil
