@@ -12,12 +12,26 @@ spoon.IndentBeeper:start()
 
 Save the file, return to the Hammerspoon menu extra but this time click the reload configuration option for your new changes to take effect. And this should be all there is to it!
 
+## How it sounds
+
+Each space of indentation raises the pitch by a quarter tone, starting from A3 (220 Hz) for no indentation, so 2 and 3 spaces, or 4 and 5, sound different. A tab counts as 4 spaces. That covers three octaves, up to A6 (1760 Hz) at 72 spaces; beyond that the scale starts again from A3, with longer tones each time round, so very deep indentation can't be mistaken for shallow.
+
+The tones are generated rather than played from sound files, and are modelled on [NVDA](https://github.com/nvaccess/nvda)'s beeps and its indentation tones: a sine wave doubled and clipped, for a brighter tone, 40 milliseconds long, with NVDA's pitches. IndentBeeper doesn't poll: it checks the indentation only when the front app reports its text cursor moving or its focus changing.
+
+## Settings
+
+Set these in your `init.lua` before `spoon.IndentBeeper:start()`, e.g. `spoon.IndentBeeper.stepsPerOctave = 12`.
+
+* `spacesPerStep` (default 1): spaces per step up in pitch. Set it to your indent size (2, 4...) for one tone per level instead.
+* `tabWidth` (default 4): how many spaces a tab counts as.
+* `stepsPerOctave` (default 24, quarter tones as in NVDA): 12 gives semitones, a bigger step per space, up to 36 spaces.
+* `lowestFrequency` (default 220) and `octaves` (default 3): where the scale starts and how far it goes.
+* `toneLength` (default 0.04 seconds), `volume` (default 0.21, from 0 to 1) and `lapLength` (default 0.08 seconds, how much longer the tones get each time the scale starts again).
+
 ## Todo
 
-While IndentBeeper already does what it's supposed to, there's a couple of things I'd like to do that were floated around by friends as suggestions:
+There's one more thing I'd like to do that was floated around by friends as a suggestion:
 
-- [ ] Make number of spaces and tabs for the level of indent configurable. This is already kinda implemented in code.
-- [ ] Add an option to configure a folder where sounds are loaded from, to support theming.
 - [ ] Add an ability to make an include/exclude list of applications where the script should function
 
-If any of these features sounds like something you'd really want or if you have other cool ideas on how this could be expanded, pull requests and other feature suggestions are welcome!
+If this sounds like something you'd really want or if you have other cool ideas on how this could be expanded, pull requests and other feature suggestions are welcome!
